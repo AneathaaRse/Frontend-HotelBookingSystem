@@ -10,6 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
+
     if (email === "user@example.com" && password === "password") {
       dispatch(login({ name: "John Doe", email }));
       navigate("/");

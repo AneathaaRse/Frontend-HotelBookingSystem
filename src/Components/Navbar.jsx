@@ -42,13 +42,15 @@ const Navbar = () => {
             </>
           )}
           {isAuthenticated && (
+            <>
             <ul className="flex space-x-4">
               <li><Link to="/dining" className="hover:text-gray-300">Dining</Link></li>
               <li><Link to="/facilities" className="hover:text-gray-300">Facilities</Link></li>
               <li><Link to="/payment" className="hover:text-gray-300">Payment</Link></li>
               <li><Link to="/booking-form" className="hover:text-gray-300">Booking Form</Link></li>
-
             </ul>
+            <Link to="/logout" className="hover:text-gray-300">Logout</Link>
+            </>
           )}
       </div>
     </div>
