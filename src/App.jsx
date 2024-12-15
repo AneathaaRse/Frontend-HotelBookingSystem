@@ -15,6 +15,7 @@ import Dining from "./Pages/Dining";
 import Facilities from "./Pages/FacilitiesSection";
 import Payment from "./Pages/Payment";
 import BookingForm from "./Pages/BookingForm";
+import BookingHistory from "./Pages/BookingHistory";
 import FacilitiesAndDining from "./Pages/FacilitiesSectionandDining";
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
               <Route path="/payment" element={<Payment />} />
               <Route path="/dining" element={<FacilitiesAndDining />} />
               <Route path="/booking-form" element={<BookingForm />}/>
+              <Route path="/booking-history" element={<BookingHistory />}/>
               <Route path="/logout" element={<Logout />} />
             </Routes>
           </main>

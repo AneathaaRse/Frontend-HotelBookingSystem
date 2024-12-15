@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import BookingHistory from './BookingHistory';
+import {useNavigate} from 'react-router-dom';
 
 const BookingForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -12,9 +15,11 @@ const BookingForm = () => {
     checkIn: "",
     checkOut: "",
     roomType: "",
+    status:"Pending"
   });
 
   const [errors, setErrors] = useState({});
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,11 +46,32 @@ const BookingForm = () => {
       setErrors(formErrors);
     } else {
       setErrors({});
+      const storedFormData = JSON.parse(localStorage.getItem('formData')) || [];
+      storedFormData.push(formData);
+      localStorage.setItem('formData', JSON.stringify(storedFormData));
+      navigate('/booking-history');
+
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        address: "",
+        adults: 1,
+        children: 0,
+        checkIn: "",
+        checkOut: "",
+        roomType: "",
+        status: "Pending"
+      });
       alert("Booking submitted successfully!");
+      
     }
   };
 
   return (
+    <>
+    
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-2xl">
         <h2 className="text-2xl font-bold mb-6 text-center">Booking Form</h2>
@@ -230,6 +256,25 @@ const BookingForm = () => {
             )}
           </div>
 
+          <div className="mb-4">
+            <label className="block text-gray-700 font-semibold mb-2" htmlFor="roomType">
+            Status
+            </label>
+            <select
+              id="status"
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            >
+              <option value="">Status</option>
+              <option value="Pending">Pending</option>
+              <option value="Completed">Completed</option>
+            </select>
+
+
+          </div>
+
           {/* Submit Button */}
           <button
             type="submit"
@@ -246,7 +291,9 @@ const BookingForm = () => {
           </p>
         </div>
       </div>
-    </div>
+    </div> 
+
+    </>
   );
 };
 
