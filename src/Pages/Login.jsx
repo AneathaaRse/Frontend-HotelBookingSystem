@@ -11,8 +11,8 @@ const Login = () => {
 
   const handleLogin = () => {
 
-    if (email === "user@example.com" && password === "password") {
-      dispatch(login({ name: "John Doe", email }));
+    if (email === localStorage.getItem('email') && password === localStorage.getItem('password')) {
+      dispatch(login({ name: localStorage.getItem('name'), email }));
       navigate("/");
     } else {
       alert("Invalid credentials");

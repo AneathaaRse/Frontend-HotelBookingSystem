@@ -43,9 +43,12 @@ const Register = () => {
       setErrors(formErrors);
     } else {
       setErrors({});
+      localStorage.setItem('name', formData.name);
+      localStorage.setItem('email', formData.email);
+      localStorage.setItem('password', formData.password);
       // Redirect to the dining facilities page after successful registration
-      navigate("/dining");
-      dispatch(login());
+      navigate("/login");
+      //dispatch(login());
     }
   };
 

@@ -5,6 +5,8 @@ import logo from "../assets/luxury-hotel-logo-dark.jpg";
 
 const Navbar = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const registeredUser = useSelector((state) => state.auth.user);
+  
 
   return (
     <nav className="bg-gray-800 text-white p-4">
@@ -49,7 +51,8 @@ const Navbar = () => {
               <li><Link to="/payment" className="hover:text-gray-300">Payment</Link></li>
               <li><Link to="/booking-form" className="hover:text-gray-300">Booking Form</Link></li>
             </ul>
-            <Link to="/logout" className="hover:text-gray-300">Logout</Link>
+             <h3>Welcome, <span className="capitalize">{registeredUser.name}</span></h3> 
+            <Link to="/logout" className="hover:text-gray-300 px-2 rounded border border-white">Logout</Link>
             </>
           )}
       </div>
