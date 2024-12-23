@@ -80,4 +80,8 @@ const Dining = () => {
   );
 };
 
+<<<<<<< HEAD
 export default Dining;
+=======
+export default Dining;
+>>>>>>> da41852713ed5437e16b9e3b61a329ed940530a8

@@ -40,4 +40,8 @@ const FacilitiesAndDining = () => {
   );
 };
 
+<<<<<<< HEAD
 export default FacilitiesAndDining;
+=======
+export default FacilitiesAndDining;
+>>>>>>> da41852713ed5437e16b9e3b61a329ed940530a8

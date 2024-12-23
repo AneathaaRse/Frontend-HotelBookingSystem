@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> da41852713ed5437e16b9e3b61a329ed940530a8
 import React, { useState } from "react";
 import BookingHistory from './BookingHistory';
 import {useNavigate} from 'react-router-dom';
