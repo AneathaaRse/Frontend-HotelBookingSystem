@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import room1 from '../assets/room1.jpg';
 import room2 from '../assets/room2.jpg';
 import room3 from '../assets/room3.jpg';
@@ -15,9 +15,25 @@ import seaview1 from '../assets/seaview-1.jpg';
 import seaview2 from '../assets/seaview-2.jpg';
 import seaview3 from '../assets/seaview-3.jpg';
 import seaview4 from '../assets/seaview-4.jpg';
+import axios from 'axios';
 
 const Rooms = () => {
   const [selectedRoom, setSelectedRoom] = useState(null);
+  const [availableRooms, setAvailableRooms] = useState([]);
+
+  useEffect(() => {
+    checkRooms();
+    return () => {
+      setAvailableRooms([]);
+    }
+  },[]);
+
+  const checkRooms = async () => {
+    const response = await axios.get(`https://pixabay.com/api/?key=16561380-c94cd735f5abeee36931dd276&q=rooms&image_type=photo`);
+    const apiResponse = response?.data?.hits; // need to change array name
+    setAvailableRooms(apiResponse);
+  }
+
 
   const standardRooms = [
     { id: 1, name: "Creamy Comfort", price: "$100/night", type: "Non-Deluxe", image: room1 },
@@ -41,17 +57,17 @@ const Rooms = () => {
     { id: 4, name: "Zanzibar Serenity", price: "$260/night", type: "Suite Room", image: seaview4 },
   ];
 
-  const renderRoomCards = (rooms) =>
-    rooms.map((room) => (
+  const renderRoomCards = (availableRooms) =>
+    availableRooms.map((room) => (
       <div
         key={room.id}
         className="border rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 cursor-pointer"
         onClick={() => setSelectedRoom(room)}
       >
-        <img src={room.image} alt={room.name} className="w-full h-64 object-cover" />
+        <img src={room?.webformatURL} alt={room.name} className="w-full h-64 object-cover" />
         <div className="p-4">
-          <h3 className="text-xl font-semibold">{room.name}</h3>
-          <p className="text-gray-700">{room.price}</p>
+          <h3 className="text-xl font-semibold">{room?.name}</h3>
+          <p className="text-gray-700">{room?.price}</p>
         </div>
       </div>
     ));
@@ -64,7 +80,7 @@ const Rooms = () => {
       <div>
         <h2 className="text-2xl font-semibold mb-2">Standard Rooms</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-6">
-          {renderRoomCards(standardRooms)}
+          {renderRoomCards(availableRooms)}
         </div>
       </div>
 
@@ -80,10 +96,10 @@ const Rooms = () => {
       {selectedRoom && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white rounded-lg p-6 w-96">
-            <img src={selectedRoom.image} alt={selectedRoom.name} className="w-full h-64 object-cover rounded-md" />
-            <h3 className="text-2xl font-bold mt-4">{selectedRoom.name}</h3>
-            <p className="text-lg text-gray-700">{selectedRoom.price}</p>
-            <p className="text-md text-gray-600">Type: {selectedRoom.type}</p>
+            <img src={selectedRoom?.webformatURL} alt={selectedRoom?.name} className="w-full h-64 object-cover rounded-md" />
+            <h3 className="text-2xl font-bold mt-4">{selectedRoom?.name}</h3>
+            <p className="text-lg text-gray-700">{selectedRoom?.price}</p>
+            <p className="text-md text-gray-600">Type: {selectedRoom?.type}</p>
             <button
               onClick={() => setSelectedRoom(null)}
               className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
