@@ -15,7 +15,7 @@ const ForgotPassword = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/users/forgot-password", {
+      const response = await fetch("https://backend-hotelbookingsystem-2.onrender.com/api/users/forgot-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
