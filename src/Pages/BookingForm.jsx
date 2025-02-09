@@ -52,7 +52,7 @@ const BookingForm = () => {
       storedFormData.push(formData);
       //localStorage.setItem('formData', JSON.stringify(storedFormData));
       try {
-        const response = await fetch('https://backend-hotelbookingsystem-2.onrender.com/api/hotels/book', {
+        const response = await fetch('https://backend-hotelbookingsystem-5.onrender.com/api/hotels/book', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
