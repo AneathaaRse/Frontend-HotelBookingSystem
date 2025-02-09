@@ -17,7 +17,7 @@ const CreateProfile = () => {
 
     const fetchUserData = async () => {
       try {
-        const response = await fetch(`https://backend-hotelbookingsystem-2.onrender.com/api/users/profile/${userId}`, {
+        const response = await fetch(`https://backend-hotelbookingsystem-5.onrender.com/api/users/profile/${userId}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -62,7 +62,7 @@ const CreateProfile = () => {
     }
 
     try {
-      const response = await fetch(`https://backend-hotelbookingsystem-2.onrender.com0/api/users/update-profile/${userId}`, {
+      const response = await fetch(`https://backend-hotelbookingsystem-5.onrender.com0/api/users/update-profile/${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
