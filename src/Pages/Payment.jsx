@@ -27,7 +27,7 @@ const PaymentForm = () => {
 
     try {
       // Send payment details to backend
-      const response = await fetch("https://backend-hotelbookingsystem-2.onrender.com/api/payments/create", {
+      const response = await fetch("https://backend-hotelbookingsystem-5.onrender.com/api/payments/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
